@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 /// with border radius of 8 and default color 0xFF00A572
 extension PrimaryButton on ElevatedButton {
   static ElevatedButton style({
-    required VoidCallback onPressed,
+    required Function()? onPressed,
     required Widget child,
     Color backgroundColor = AppColor.primary,
     double borderRadius = 8.0,
