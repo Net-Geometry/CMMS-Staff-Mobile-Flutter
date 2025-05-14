@@ -26,6 +26,9 @@ dependencies:
   web_socket_channel: ^3.0.3
   rxdart: ^0.28.0
   intl: ^0.18.1
+  pdfx: ^2.9.1
+  share_plus: ^7.2.1
+  http: ^1.4.0
 
 dev_dependencies:
   flutter_test:
