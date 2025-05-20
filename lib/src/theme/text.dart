@@ -79,4 +79,7 @@ extension AppTextStyleExtension on Text {
 
   /// ARGB 0xFF4B5563
   Text get charcoalGray => withColor(AppColor.charcoalGray);
+
+  /// Text Alignment Center
+  Text get center => Text(data ?? '', textAlign: TextAlign.center);
 }
