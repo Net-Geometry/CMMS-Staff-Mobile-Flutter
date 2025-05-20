@@ -16,7 +16,7 @@ class StaffAssistantDashboard extends StatelessWidget {
       pages: const [
         HomeDashboardContent(),      // Home
         LeaveManagementPage(),       // Leave
-        AttendanceHistoryPage(),     // Attendance
+        StaffAttendanceHistoryPage(),     // Attendance
         PayrollPage(),               // Payroll
         WorkSchedulePage(),          // Schedule
       ],

@@ -22,6 +22,6 @@ final Map<String, WidgetBuilder> appRoutes = {
   '/reset-password': (context) => const ResetPasswordPage(),
   '/manager': (context) => const StaffManagerDashboard(),
   '/assistant': (context) => const StaffAssistantDashboard(),
-  '/attendance-history': (context) => const AttendanceHistoryPage(),
+  '/attendance-history': (context) => const StaffAttendanceHistoryPage(),
   '/clockin': (context) => const StaffClockInPage(),
 };

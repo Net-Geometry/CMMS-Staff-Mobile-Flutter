@@ -31,7 +31,7 @@ class NavBar extends StatelessWidget {
                 _buildNavItem(icon: Icons.calendar_today, label: "Leave", index: 1),
                 _buildCenterButton(index: 2),
                 _buildNavItem(icon: Icons.account_balance_wallet, label: "Payroll", index: 3),
-                _buildNavItem(icon: Icons.schedule, label: "Schedule", index: 4),
+                _buildNavItem(icon: Icons.calendar_month, label: "Schedule", index: 4),
             ],
           ),
         ),
