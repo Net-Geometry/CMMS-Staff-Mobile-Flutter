@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/navbar.dart';
 import '../widgets/topbar.dart';
+import '../providers/navigation_provider.dart';
 
-class MainLayout extends StatefulWidget {
+class MainLayout extends ConsumerWidget {
   final List<Widget> pages;
 
   const MainLayout({super.key, required this.pages});
 
   @override
-  State<MainLayout> createState() => _MainLayoutState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(navigationProvider);
 
-class _MainLayoutState extends State<MainLayout> {
-  int _selectedIndex = 0;
-
-  void _onTabSelected(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -34,13 +25,19 @@ class _MainLayoutState extends State<MainLayout> {
               );
             },
           ),
-          Expanded(child: widget.pages[_selectedIndex]),
+          Expanded(child: pages[selectedIndex]),
         ],
       ),
       bottomNavigationBar: NavBar(
-        selectedIndex: _selectedIndex,
-        onTabSelected: _onTabSelected,
+        selectedIndex: selectedIndex,
+        onTabSelected: (index) => ref.read(navigationProvider.notifier).setIndex(index),
       ),
+      floatingActionButton: NavBar.buildFloatingActionButton(
+        context,
+        selectedIndex,
+        (index) => ref.read(navigationProvider.notifier).setIndex(index),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

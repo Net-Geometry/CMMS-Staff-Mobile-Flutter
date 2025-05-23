@@ -23,15 +23,28 @@ class NavBar extends StatelessWidget {
       child: SafeArea(
         top: false,
         child: SizedBox(
-            height: 90,
-            child: Row(
+          height: 70, // Reduced height to avoid overflow
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-                _buildNavItem(icon: Icons.home, label: "Home", index: 0),
-                _buildNavItem(icon: Icons.calendar_today, label: "Leave", index: 1),
-                _buildCenterButton(index: 2),
-                _buildNavItem(icon: Icons.account_balance_wallet, label: "Payroll", index: 3),
-                _buildNavItem(icon: Icons.calendar_month, label: "Schedule", index: 4),
+              _buildNavItem(icon: Icons.home, label: "Home", index: 0),
+              _buildNavItem(
+                icon: Icons.calendar_today,
+                label: "Leave",
+                index: 1,
+              ),
+              // Spacer for center button
+              const SizedBox(width: 60),
+              _buildNavItem(
+                icon: Icons.account_balance_wallet,
+                label: "Payroll",
+                index: 3,
+              ),
+              _buildNavItem(
+                icon: Icons.calendar_month,
+                label: "Schedule",
+                index: 4,
+              ),
             ],
           ),
         ),
@@ -39,7 +52,11 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem({required IconData icon, required String label, required int index}) {
+  Widget _buildNavItem({
+    required IconData icon,
+    required String label,
+    required int index,
+  }) {
     final isSelected = selectedIndex == index;
     final color = isSelected ? _green : _grey;
 
@@ -71,42 +88,57 @@ class NavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildCenterButton({required int index}) {
-    final isSelected = selectedIndex == index;
-    final iconColor = Colors.white;
+  // Using FloatingActionButton pattern instead
+  static Widget buildFloatingActionButton(
+    BuildContext context,
+    int selectedIndex,
+    Function(int) onTabSelected,
+  ) {
+    final isSelected = selectedIndex == 2;
     final labelColor = isSelected ? _green : _grey;
 
-    return GestureDetector(
-        onTap: () => onTabSelected(index),
-        child: Transform.translate(
-        offset: const Offset(0, -25),
-        child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-            Container(
-                height: 52,
-                width: 52,
-                decoration: BoxDecoration(
-                color: _green,
-                shape: BoxShape.circle,
-                boxShadow: [
-                    BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 8,
-                    offset: const Offset(0, 4),
-                    )
-                ],
+    return Transform.translate(
+      offset: const Offset(0, 15), // Move down by 15 pixels
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 60,
+            width: 60,
+            margin: const EdgeInsets.only(
+              bottom: 6,
+            ), // Increased spacing for the text below
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  blurRadius: 8,
+                  offset: const Offset(0, 4),
                 ),
-                child: Icon(Icons.fingerprint, color: iconColor, size: 28),
+              ],
             ),
-            const SizedBox(height: 4),
-            Text(
-                "Attendance",
-                style: TextStyle(color: labelColor, fontSize: 12),
+            child: FloatingActionButton(
+              elevation: 0, // Remove default FloatingActionButton shadow
+              onPressed: () => onTabSelected(2),
+              backgroundColor: _green,
+              shape: const CircleBorder(), // Ensure perfect circle shape
+              child: const Icon(
+                Icons.fingerprint,
+                color: Colors.white,
+                size: 30,
+              ),
             ),
-            ],
-        ),
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              "Attendance",
+              style: TextStyle(color: labelColor, fontSize: 12),
+            ),
+          ),
+        ],
+      ),
     );
-    }
+  }
 }
