@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
-class AppTheme {
-  static const primaryColor = Color(0xFF00A572);
-  static const backgroundColor = Color(0xFFF8F9FB);
+import 'color.dart';
 
+class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: backgroundColor,
-    primaryColor: primaryColor,
-    colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
+    scaffoldBackgroundColor: AppColor.lightGray,
+    primaryColor: AppColor.primary,
+    colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primary),
     fontFamily: 'Inter',
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
       foregroundColor: Colors.black,
+    ),
+    cardTheme: CardTheme(
+      color: AppColor.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
     ),
   );
 }

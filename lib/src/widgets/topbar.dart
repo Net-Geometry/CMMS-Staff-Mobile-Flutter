@@ -1,14 +1,13 @@
+import 'package:cmms_staff_mobile_flutter/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_profile.dart';
+import '../theme/color.dart';
 
 class TopBar extends StatefulWidget {
   final VoidCallback onNotificationTap;
 
-  const TopBar({
-    super.key,
-    required this.onNotificationTap,
-  });
+  const TopBar({super.key, required this.onNotificationTap});
 
   @override
   State<TopBar> createState() => _TopBarState();
@@ -53,16 +52,16 @@ class _TopBarState extends State<TopBar> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Welcome back 👋",
-                    style: TextStyle(fontSize: 14, color: Colors.black54)),
-                Text(fullName,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const Text(
+                  "Welcome back 👋",
+                ).labelLarge.withColor(AppColor.charcoalGray),
+                Text(fullName).bodyLarge.withColor(AppColor.black).semiBold,
               ],
             ),
           ),
           IconButton(
             onPressed: widget.onNotificationTap,
-            icon: const Icon(Icons.notifications_none, color: Colors.black87),
+            icon: const Icon(Icons.notifications_none, color: AppColor.black),
           ),
         ],
       ),

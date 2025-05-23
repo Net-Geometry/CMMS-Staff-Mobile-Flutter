@@ -1,4 +1,7 @@
+import 'package:cmms_staff_mobile_flutter/src/theme/color.dart';
 import 'package:flutter/material.dart';
+
+import '../../../theme/text.dart';
 
 class AttendanceCard extends StatelessWidget {
   const AttendanceCard({super.key});
@@ -6,29 +9,58 @@ class AttendanceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: AppColor.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Attendance", style: TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 4),
-            const Text("23 April, 2025"),
-            const SizedBox(height: 8),
-            const Text("Clock In Time", style: TextStyle(fontSize: 13)),
-            const Text("08:30 AM", style: TextStyle(fontWeight: FontWeight.w600)),
-            const SizedBox(height: 12),
-            Align(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF00A572),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Attendance",
+                    ).titleMedium.semiBold.withColor(AppColor.black),
+                    const SizedBox(height: 4),
+                    const Text(
+                      "23 April, 2025",
+                    ).labelLarge.withColor(AppColor.slateGray),
+                  ],
                 ),
-                child: const Text("Clock Out"),
-              ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(
+                      AppColor.mintGreen,
+                    ),
+                  ),
+                  child: Text("Clocked In").labelLarge,
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Clock In Time").labelLarge.withColor(AppColor.slateGray),
+                    const Text("08:30 AM").bodyLarge.withColor(AppColor.black).semiBold,
+                  ],
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(AppColor.primary),
+                  ),
+                  child: Text("Clock Out").labelLarge.withColor(AppColor.white),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:cmms_staff_mobile_flutter/src/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class LeaveBalanceCard extends StatelessWidget {
@@ -19,7 +20,7 @@ class LeaveBalanceCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Leave Balance", style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text("Leave Balance").titleMedium.semiBold.withColor(AppColor.black),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -28,7 +28,7 @@ extension AppTextStyleExtension on Text {
   Text get titleLarge => Text(data ?? '', style: AppTextStyle(size: 22));
 
   /// Text style with font size 18
-  Text get titleMedium => Text(data ?? '', style: AppTextStyle(size: 18)).titleMedium;
+  Text get titleMedium => Text(data ?? '', style: AppTextStyle(size: 18));
 
   /// Text style with font size 14
   Text get titleSmall => Text(data ?? '', style: AppTextStyle(size: 14)).titleMedium;
