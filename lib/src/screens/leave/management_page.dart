@@ -1,4 +1,7 @@
+import 'package:cmms_staff_mobile_flutter/src/screens/leave/apply_leave_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 
 class LeaveManagementPage extends StatelessWidget {
   const LeaveManagementPage({super.key});
@@ -16,13 +19,28 @@ class LeaveManagementPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ApplyLeavePage(),
+                      ));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF00A572),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    child: const Text('+ Apply Leave'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icon/plus.svg'),
+                        Gap(10),
+                        const Text(
+                          'Apply Leave',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -33,37 +51,72 @@ class LeaveManagementPage extends StatelessWidget {
                       foregroundColor: const Color(0xFF00A572),
                       side: const BorderSide(color: Color(0xFF00A572)),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                    child: const Text('Apply RL'),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icon/recycle.svg'),
+                        Gap(10),
+                        const Text(
+                          'Apply RL',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
                   ),
-                )
+                ),
               ],
             ),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text('Pending Leave Requests', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'Pending Leave Requests',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Row(
                   children: [
                     Chip(label: Text('All')),
                     SizedBox(width: 6),
                     Chip(label: Text('Replacement')),
                   ],
-                )
+                ),
               ],
             ),
             const SizedBox(height: 12),
             Expanded(
               child: ListView(
                 children: [
-                  _buildLeaveCard('Annual Leave', 'May 4-7', '3 days', 'Rejected', Colors.red.shade100, Colors.red.shade800),
-                  _buildLeaveCard('Medical Leave', 'Apr 2-3', '2 days', 'Approved', Colors.green.shade100, Colors.green.shade800),
-                  _buildLeaveCard('Replacement Leave', 'Apr 23-24', '2 days', 'Pending', Colors.orange.shade100, Colors.orange.shade800),
+                  _buildLeaveCard(
+                    'Annual Leave',
+                    'May 4-7',
+                    '3 days',
+                    'Rejected',
+                    Colors.red.shade100,
+                    Colors.red.shade800,
+                  ),
+                  _buildLeaveCard(
+                    'Medical Leave',
+                    'Apr 2-3',
+                    '2 days',
+                    'Approved',
+                    Colors.green.shade100,
+                    Colors.green.shade800,
+                  ),
+                  _buildLeaveCard(
+                    'Replacement Leave',
+                    'Apr 23-24',
+                    '2 days',
+                    'Pending',
+                    Colors.orange.shade100,
+                    Colors.orange.shade800,
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -80,7 +133,10 @@ class LeaveManagementPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: const [
-                Text('Leave Balance', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'Leave Balance',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 Text('2025'),
               ],
             ),
@@ -93,14 +149,21 @@ class LeaveManagementPage extends StatelessWidget {
                 _LeaveStat(count: '2/3', label: 'Replacement'),
                 _LeaveStat(count: '2/2', label: 'Emergency'),
               ],
-            )
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildLeaveCard(String type, String range, String duration, String status, Color bgColor, Color textColor) {
+  Widget _buildLeaveCard(
+    String type,
+    String range,
+    String duration,
+    String status,
+    Color bgColor,
+    Color textColor,
+  ) {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
@@ -112,7 +175,7 @@ class LeaveManagementPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(type, style: const TextStyle(fontWeight: FontWeight.bold)),
-                _buildStatusTag(status, bgColor, textColor)
+                _buildStatusTag(status, bgColor, textColor),
               ],
             ),
             const SizedBox(height: 8),
@@ -125,7 +188,7 @@ class LeaveManagementPage extends StatelessWidget {
                 onPressed: () {},
                 child: const Text('View Details'),
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -139,7 +202,14 @@ class LeaveManagementPage extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(label, style: TextStyle(color: textColor, fontSize: 12, fontWeight: FontWeight.bold)),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: textColor,
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     );
   }
 }
@@ -154,8 +224,11 @@ class _LeaveStat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(count, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        Text(label, style: const TextStyle(color: Colors.grey))
+        Text(
+          count,
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+        ),
+        Text(label, style: const TextStyle(color: Colors.grey)),
       ],
     );
   }

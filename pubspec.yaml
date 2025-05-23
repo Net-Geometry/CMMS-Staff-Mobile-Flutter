@@ -31,6 +31,7 @@ dependencies:
   http: ^1.4.0
   google_fonts: ^6.2.1
   gap: ^3.0.1
+  flutter_svg: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +46,7 @@ flutter:
     - assets/images/splash.png
     - assets/images/main_bg.png
     - assets/images/login_header.png
+    - assets/icon/
 
 flutter_icons:
   android: true

@@ -8,12 +8,14 @@ class ApplyLeavePage extends StatelessWidget {
     final leaveTypes = ["Annual", "Medical", "Emergency", "Replacement"];
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Apply Leave"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Apply Leave", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             DropdownButtonFormField<String>(
               decoration: const InputDecoration(labelText: "Leave Type"),
